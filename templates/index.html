@@ -96,25 +96,42 @@
     
     <footer>
         <h2>¡Contactanos!</h2>
-        <form id="formContacto" class="formContacto" data-aos="fade-up">
+        <form id="formContacto" class="formContacto" data-aos="fade-up" novalidate>
+    
             <div class="campo">
                 <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" name="nombre">
             </div>
             
             <div class="campo">
                 <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div class="campo">
+                <label for="motivo">Motivo de Contacto</label>
+                <select id="motivo" name="motivo">
+                     <option value="" disabled selected>Selecciona un motivo</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="reclamo">Reclamo</option>
+                    <option value="trabajo">Puesto de trabajo</option>
+                    <option value="otro">Otro</option>
+                 </select>
             </div>
             
             <div class="campo">
                 <label for="asunto">Asunto</label>
-                <input type="text" id="asunto" name="asunto" required>
+                <input type="text" id="asunto" name="asunto">
             </div>
             
             <div class="campo">
                 <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+            </div>
+
+            <div class="campo">
+                <label>¿Deseas que te enviemos novedades a tu mail? </label>
+                <input type="checkbox" id="novedades" name="novedades">
             </div>
             
             <button type="submit">Enviar mensaje</button>

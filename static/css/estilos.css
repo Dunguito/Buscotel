@@ -119,6 +119,21 @@ footer h2 {
     transition: background 0.2s;
 }
 
+.formContacto input[type="checkbox"] {
+  accent-color: #FFD700; 
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formContacto input[type="checkbox"]:checked {
+  transform: scale(1.2);
+  box-shadow: 0 0 5px #FFD70088;
+}
+
 .formContacto button:hover {
     background: #e6c200;
 }
