@@ -1,6 +1,8 @@
+
+
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="es">
 
     <head>
 
@@ -15,32 +17,37 @@
 
     </head>
 
+
     <body>       
+
         <header> 
+            
             <img src="{{ url_for('static', filename='imagenes/buscotel.png') }}" alt="BUSCOTEL" class="logo">
           
         
             <form class="formBusqueda" data-aos="zoom-in">
+
                 <input type="text" id="destino" placeholder="¿A dónde vas? 🌍" required>
                 <input type="date" id="fechaCheckIn" placeholder="Entrada" required>
                 <input type="date" id="fechaCheckOut" placeholder="Salida" required>
                 <input type="number" min="1" id="cantidadAdultos" placeholder="Adultos 👨‍💼👩‍💼 " required>
                 <input type="number" min="0" id="cantidadNiños" placeholder="Niños 👦👧  " required>
                 <button type="submit" id="buscar">Buscar</button>
+
             </form>
             
-        
-            <ul id="listaHoteles">
-</ul>
-</header>
+        </header>
+
 
         <br>
         <br>
         <br>
         <br>
         <br>
+
 
         <div id="mapa">
+
             <iframe 
             id ="mapaIframe"
             src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6694.962604285054!2d-60.64383689016434!3d-32.96470142638802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sHoteles!5e0!3m2!1ses!2sar!4v1746664641369!5m2!1ses!2sar"
@@ -51,7 +58,9 @@
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
             </iframe>
+
         </div>
+
 
         <div class="imagenHoteles">
             
@@ -92,55 +101,79 @@
         
         <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
-    </body>
-    
-    <footer>
-        <h2>¡Contactanos!</h2>
-        <form id="formContacto" class="formContacto" data-aos="fade-up" novalidate>
-    
-            <div class="campo">
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" name="nombre">
-            </div>
-            
-            <div class="campo">
-                <label for="email">Correo electrónico</label>
-                <input type="email" id="email" name="email">
-            </div>
 
-            <div class="campo">
-                <label for="motivo">Motivo de Contacto</label>
-                <select id="motivo" name="motivo">
-                     <option value="" disabled selected>Selecciona un motivo</option>
-                    <option value="consulta">Consulta</option>
-                    <option value="reclamo">Reclamo</option>
-                    <option value="trabajo">Puesto de trabajo</option>
-                    <option value="otro">Otro</option>
-                 </select>
-            </div>
-            
-            <div class="campo">
-                <label for="asunto">Asunto</label>
-                <input type="text" id="asunto" name="asunto">
-            </div>
-            
-            <div class="campo">
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="5"></textarea>
-            </div>
+        <footer>
 
-            <div class="campo">
-                <label>¿Deseas que te enviemos novedades a tu mail? </label>
-                <input type="checkbox" id="novedades" name="novedades">
-            </div>
+            <h2>¡Contactanos!</h2>
+
+            <form id="formContacto" class="formContacto" data-aos="fade-up" novalidate>
+    
+                <div class="campo">
+
+                    <label for="nombre">Nombre completo</label>
+                    <input type="text" id="nombre" name="nombre">
+
+                </div>
             
-            <button type="submit">Enviar mensaje</button>
-            <p id="mensajeConfirmacion"></p>
-        </form>
+                <div class="campo">
+
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email">
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="motivo">Motivo de Contacto</label>
+
+                    <select id="motivo" name="motivo">
+
+                        <option value="" disabled selected>Selecciona un motivo</option>
+                        <option value="consulta">Consulta</option>
+                        <option value="reclamo">Reclamo</option>
+                        <option value="trabajo">Puesto de trabajo</option>
+                        <option value="otro">Otro</option>
+
+                    </select>
+
+                </div>
+            
+                <div class="campo">
+
+                    <label for="asunto">Asunto</label>
+                    <input type="text" id="asunto" name="asunto">
+
+                </div>
+            
+                <div class="campo">
+
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+
+                </div>
+
+                <div class="campo">
+
+                    <label>¿Deseas que te enviemos novedades a tu mail? </label>
+                    <input type="checkbox" id="novedades" name="novedades">
+
+                </div>
+            
+                
+                <button type="submit">Enviar mensaje</button>
+                <p id="mensajeConfirmacion"></p>
+
+            </form>
         
-        <p style="text-align: center; margin-top: 20px;">
-            © 2025 BUSCOTEL. Todos los derechos reservados.
-        </p>
-    </footer>
+
+            <p style="text-align: center; margin-top: 20px;">
+                © 2025 BUSCOTEL. Todos los derechos reservados.
+            </p>
+
+        </footer>
+
+
+    </body>
+
 
 </html>
