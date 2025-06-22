@@ -11,7 +11,7 @@ def get_db_connection():
     return conn
 
 def init_db():
-    if os.path.exists(DATABASE): # Si la base de datos  existe, no la crea
+    if os.path.exists(DATABASE): # Si la base de datos existe, no la crea
         return
 
     print("Creando la base de datos...")
@@ -38,7 +38,7 @@ def contact():
     mensaje = data.get('mensaje')
 
     if not all([nombre, apellido, telefono, mensaje]):
-        return jsonify({"msg": "ERROR: Los datos del formulario no estÃ¡n completos"}), 400
+        return jsonify({"msg": "ERROR: Los datos del formulario no están completos"}), 400
 
     try:
         conn = get_db_connection()
