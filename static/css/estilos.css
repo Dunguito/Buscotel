@@ -214,6 +214,37 @@ footer p
 }
 
 
+.mensaje-validacion 
+{
+  display: none; /* Oculto por defecto */
+  padding: 8px 16px;
+  margin: 15px auto 0 auto;
+  font-weight: bold;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.85);
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: pre-line;
+  max-width: 90%;
+}
+
+
+.mensaje-validacion.exito 
+{
+  display: inline-block;
+  color: #FFD700;
+}
+
+
+.mensaje-validacion.error 
+{
+  display: inline-block;
+  color: #FF4444;
+}
+
+
 /* TABLETS */
 @media only screen and (max-width: 1024px) 
 {
