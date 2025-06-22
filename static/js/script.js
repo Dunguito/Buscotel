@@ -6,17 +6,54 @@ document.addEventListener("DOMContentLoaded", function()
   AOS.init();
 
   const formBusqueda = document.querySelector(".formBusqueda");
+
   formBusqueda.addEventListener("submit", async function(event) 
   {
     event.preventDefault();
 
 
     const ciudad = document.getElementById("destino").value.trim();
+    const checkIn = document.getElementById("fechaCheckIn").value;
+    const checkOut = document.getElementById("fechaCheckOut").value;
+    const adultos = parseInt(document.getElementById("cantidadAdultos").value);
+    const mensajeBusqueda = document.getElementById("mensajeBusqueda");
+
+
+    mensajeBusqueda.textContent = "";
+    mensajeBusqueda.classList.remove("exito", "error");
+
+
     if (!ciudad) 
     {
-      alert("Por favor ingresa un destino válido.");
+      mensajeBusqueda.textContent = "Por favor, ingresa un destino válido.";
+      mensajeBusqueda.classList.add("error");
       return;
     }
+
+    if (!checkIn || !checkOut) 
+    {
+      mensajeBusqueda.textContent = "Por favor, selecciona las fechas de entrada y salida.";
+      mensajeBusqueda.classList.add("error");
+      return;
+    }
+
+    if (new Date(checkIn) >= new Date(checkOut)) 
+    {
+      mensajeBusqueda.textContent = "La fecha de salida debe ser posterior a la fecha de entrada.";
+      mensajeBusqueda.classList.add("error");
+      return;
+    }
+
+    if (isNaN(adultos) || adultos < 1) 
+    {
+      mensajeBusqueda.textContent = "Debe haber al menos un adulto.";
+      mensajeBusqueda.classList.add("error");
+      return;
+    }
+
+
+    mensajeBusqueda.textContent = "¡Búsqueda realizada correctamente!";
+    mensajeBusqueda.classList.add("exito");
 
 
     actualizarMapa(ciudad);
@@ -26,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function()
 
 
   const formContacto = document.getElementById("formContacto");
+
   formContacto.addEventListener("submit", function(event) 
   {
 
@@ -41,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function()
 
     if (!nombre || !email || !asunto || !mensaje) 
     {
-      mensajeConfirmacion.textContent = "Por favor completa todos los campos.";
+      mensajeConfirmacion.textContent = "Por favor, completa todos los campos.";
       mensajeConfirmacion.style.color = "red";
       return;
     }
