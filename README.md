@@ -19,7 +19,7 @@ Buscotel es una aplicación web que permite visualizar hoteles disponibles en di
 - Python (Flask) para el backend.
 - SQLite como base de datos.
 - HTML, CSS y JavaScript para el frontend.
-- Estructura MVC básica con `templates` y `static`.
+
 
 ---
 
