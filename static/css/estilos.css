@@ -47,12 +47,23 @@ p
   display: flex;
   margin: 40px auto;
   background-color: #3824cb;
-  gap: 40px;
+  gap: 30px;
   padding: 8px 16px;
   border-radius: 16px;
   overflow: hidden;
-  width: 1000px;
+  width: fit-content;
+  max-width: 100%;  
   border: 3px solid rgb(156, 152, 152);
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+
+.campoBusqueda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 
@@ -182,12 +193,43 @@ footer p
 }
 
 
-#mapa 
+#tabla 
 {
-  display: flex;
+  display: table;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  background-color: black;
+  font-weight: bold;
+  white-space: nowrap;
+  text-align: center;
+  border-collapse: collapse;
+  margin: 20px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  width: auto;
+}
+
+
+#elementosTabla
+{
+  display: none;
+}
+
+
+#elementosTabla.mostrarTabla
+{
+  display: table
+}
+
+
+#tabla th,
+#tabla td 
+{
+  border: 1px solid white;
+  padding: 8px 12px;
+  text-align: left;
 }
 
 
