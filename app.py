@@ -57,15 +57,18 @@ def contact():
         return jsonify({"msg": "Error del servidor"}), 500
 
     
-@app.route('/api/hoteles/<string:ciudad>', methods=['GET'])
-def get_hoteles(ciudad : str):
-    if not ciudad:
-        return jsonify({"msg": "ERROR: Se esperaba una ciudad"}), 400
+@app.route('/api/hoteles', methods=['GET'])
+def get_hoteles():
+    ciudad = request.args.get("ciudad")
+    fecha_inicio = request.args.get("fecha_inicio")
+    fecha_fin = request.args.get("fecha_fin")
+    huespedes = request.args.get("huespedes")
+
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
         ciudad = f"%{ciudad}%"
-        cursor.execute('SELECT * FROM hoteles WHERE ciudad LIKE ? ', (ciudad,)) 
+        cursor.execute('SELECT * FROM hoteles WHERE ciudad LIKE ? AND fecha_inicio_disponible <= ? AND fecha_fin_disponible >= ? AND capacidad >= ?', (ciudad, fecha_inicio, fecha_fin, huespedes)) 
         hoteles = cursor.fetchall()
         cursor.close()
         conn.close()
