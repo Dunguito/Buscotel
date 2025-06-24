@@ -27,12 +27,27 @@
         
             <form class="formBusqueda" data-aos="zoom-in">
 
+            <div class="campoBusqueda">
+                <label for="destino">Destino</label>
                 <input type="text" id="destino" placeholder="¿A dónde vas? 🌍">
+            </div>
+
+            <div class="campoBusqueda">
+                <label for="fechaCheckIn">Check In</label>
                 <input type="date" id="fechaCheckIn">
+            </div>
+
+            <div class="campoBusqueda">
+                <label for="fechaCheckOut">Check Out</label>
                 <input type="date" id="fechaCheckOut">
-                <input type="number" min="1" id="cantidadAdultos" placeholder="Adultos 👨‍💼👩‍💼 ">
-                <input type="number" min="0" id="cantidadNiños" placeholder="Niños 👦👧  ">
-                <button type="submit" id="buscar">Buscar</button>
+            </div>
+
+            <div class="campoBusqueda">
+                <label for="cantidadHuespedes">Huéspedes</label>
+                <input type="number" min="1" id="cantidadHuespedes" placeholder="🧔‍♂️👩‍🦰🧒👧 ">
+            </div>
+
+            <button type="submit" id="buscar">Buscar</button>
 
             </form>
             
@@ -48,18 +63,29 @@
         <br>
 
 
-        <div id="mapa">
+        <div style="text-align: center;">
+        
+            <div id="tabla">
 
-            <iframe 
-            id ="mapaIframe"
-            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d6694.962604285054!2d-60.64383689016434!3d-32.96470142638802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sHoteles!5e0!3m2!1ses!2sar!4v1746664641369!5m2!1ses!2sar"
-            width="600" 
-            height="450" 
-            style="border:0;"
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+                <table id="elementosTabla" class="tablaMostrar">
+
+                    <thead>
+                        <tr>
+                            <th>Ciudad</th>
+                            <th>Nombre</th>
+                            <th>Capacidad</th>
+                            <th>Fecha de inicio</th>
+                            <th>Fecha de fin</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="elementosTabla-body">
+                        <!-- Se inserta desde Javascript -->
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </div>
 
