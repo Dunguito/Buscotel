@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function()
 
   const formContacto = document.getElementById("formContacto");
 
-  formContacto.addEventListener("submit", function(event) 
+  formContacto.addEventListener("submit", async function(event) 
   {
 
     event.preventDefault();
@@ -72,12 +72,13 @@ document.addEventListener("DOMContentLoaded", function()
 
     const nombre = document.getElementById("nombre").value.trim();
     const email = document.getElementById("email").value.trim();
+    const motivo = document.getElementById("motivo").value.trim();
     const asunto = document.getElementById("asunto").value.trim();
     const mensaje = document.getElementById("mensaje").value.trim();
     const mensajeConfirmacion = document.getElementById("mensajeConfirmacion");
+    
 
-
-    if (!nombre || !email || !asunto || !mensaje) 
+    if (!nombre || !email || !asunto || motivo == "" || !mensaje) 
     {
       mensajeConfirmacion.textContent = "Por favor, completa todos los campos.";
       mensajeConfirmacion.style.color = "red";
@@ -104,7 +105,19 @@ document.addEventListener("DOMContentLoaded", function()
 
     mensajeConfirmacion.textContent = "¡Mensaje enviado correctamente!";
     mensajeConfirmacion.style.color = "#FFD700";
+    const response = await fetch("/api/contact",{
+      method : "POST", headers : {"content-type" : "application/json"}, body : JSON.stringify({nombre, email, asunto, motivo, mensaje})
+    })
+    const data = await response.json();
+    if (!response.ok) 
+    {
+      mensajeConfirmacion.textContent = "Error al enviar el mensaje. Por favor, inténtalo de nuevo.";
+      mensajeConfirmacion.style.color = "red";
+      return;
+    }
     formContacto.reset();
+    mensajeConfirmacion.textContent = data.msg;
+    mensajeConfirmacion.style.color = "green"; 
 
 
   });
@@ -119,5 +132,6 @@ function actualizarMapa(ciudad)
   const urlMapa = `https://www.google.com/maps?q=hoteles+en+${encodeURIComponent(ciudad)}&output=embed`;
   mapaIframe.src = urlMapa;
 }
+
 
 

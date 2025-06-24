@@ -33,49 +33,59 @@ def contact():
 
     data = request.get_json()
     nombre = data.get('nombre')
-    apellido = data.get('apellido')
-    telefono = data.get('telefono')
+    email = data.get('email')
+    motivo = data.get('motivo')
+    asunto = data.get('asunto')
     mensaje = data.get('mensaje')
 
-    if not all([nombre, apellido, telefono, mensaje]):
+    if not all([nombre, email, asunto, mensaje]):
         return jsonify({"msg": "ERROR: Los datos del formulario no están completos"}), 400
 
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute(
-            'INSERT INTO contacts (nombre, apellido, telefono, mensaje) VALUES (?, ?, ?, ?)',
-            (nombre, apellido, telefono, mensaje)
+            'INSERT INTO contacts (nombre, email, asunto,motivo, mensaje) VALUES (?, ?, ?, ?, ?)',
+            (nombre, email, asunto,motivo, mensaje)
         )
         conn.commit()
         conn.close()
+        print(f"Mensaje recibido de {nombre} ({email}): {asunto} - {mensaje}")
         return jsonify({"msg": "Mensaje recibido!"}), 201
     except Exception as e:
         print(f"Error del servidor: {e}")
         return jsonify({"msg": "Error del servidor"}), 500
 
-@app.route('/api/messages', methods=['GET'])
-def get_messages():
+    
+@app.route('/api/hoteles/<string:ciudad>', methods=['GET'])
+def get_hoteles(ciudad : str):
+    if not ciudad:
+        return jsonify({"msg": "ERROR: Se esperaba una ciudad"}), 400
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM contacts ORDER BY timestamp DESC')
-        res = cursor.fetchall()
-
-        column_names = [description[0] for description in cursor.description]
-        
+        ciudad = f"%{ciudad}%"
+        cursor.execute('SELECT * FROM hoteles WHERE ciudad LIKE ? ', (ciudad,)) 
+        hoteles = cursor.fetchall()
+        cursor.close()
         conn.close()
-
-        mensajes = []
-        for fila in res:
-            mensaje_dict = dict(zip(column_names, fila))
-            mensajes.append(mensaje_dict)
-            
-        return jsonify(mensajes), 200
+        hoteles_list = [
+            {
+                "id": row[0],
+                "nombre": row[1],
+                "capacidad": row[2],
+                "fecha_inicio_disponible": row[3],
+                "fecha_fin_disponible": row[4],
+                "ciudad": row[5]
+            }
+            for row in hoteles
+        ]
+        return jsonify(hoteles_list), 200
     except Exception as e:
         print(f"Error del servidor: {e}")
         return jsonify({"msg": "Error del servidor"}), 500
-    
+
+
 if __name__ == '__main__':
     with app.app_context():
         init_db()
