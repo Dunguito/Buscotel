@@ -55,8 +55,54 @@ def contact():
     except Exception as e:
         print(f"Error del servidor: {e}")
         return jsonify({"msg": "Error del servidor"}), 500
-
     
+@app.route('/api/hoteles/<int:id>', methods=['PUT'])
+def update_hotel(id: int):
+    ciudad = request.args.get("ciudad")
+    fecha_inicio = request.args.get("fecha_inicio")
+    fecha_fin = request.args.get("fecha_fin")
+    capacidad = request.args.get("capacidad")
+    nombre = request.args.get("nombre")
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = 'UPDATE hoteles SET nombre = ? , capacidad = ? , fecha_inicio_disponible = ? , fecha_fin_disponible = ?, ciudad = ?  where id = ?'
+        params = (nombre, capacidad, fecha_inicio, fecha_fin, ciudad, id)
+
+        cursor.execute(query, params)
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return jsonify("Hotel actualizado"), 200
+    except Exception as e:
+        print(f"Error del servidor: {e}")
+        return jsonify({"msg": "Error del servidor"}), 500
+
+@app.route('/api/hoteles/<int:id>', methods=['DELETE'])
+def delete_hotel(id: int):
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        query = 'DELETE FROM hoteles where id = ?'
+        params = (id,)
+
+        cursor.execute(query, params)
+
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return jsonify("Hotel borrado"), 200
+    except Exception as e:
+        print(f"Error del servidor: {e}")
+        return jsonify({"msg": "Error del servidor"}), 500
+
+
+
 @app.route('/api/hoteles', methods=['GET'])
 def get_hoteles():
     ciudad = request.args.get("ciudad")
