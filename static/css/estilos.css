@@ -46,7 +46,7 @@ p
   justify-content: center;
   display: flex;
   margin: 40px auto;
-  background-color: #3824cb;
+  background-color: #171050;
   gap: 30px;
   padding: 8px 16px;
   border-radius: 16px;
@@ -56,6 +56,7 @@ p
   border: 3px solid rgb(156, 152, 152);
   align-items: flex-end;
   box-sizing: border-box;
+  color: white;
 }
 
 
@@ -79,7 +80,7 @@ p
 
 footer 
 {
-  background: #3824cb;
+  background: #171050;
   color: #fff;
   padding: 40px 0 20px 0;
   text-align: center;
@@ -209,6 +210,7 @@ footer p
   border-radius: 8px;
   overflow: hidden;
   width: auto;
+  color : white;
 }
 
 
@@ -239,7 +241,7 @@ footer p
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 50px;
-  background-color: #3824cb;
+  background-color: #171050;
   padding: 50px;
   width: fit-content;
   margin: 40px auto;
